@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Forge - Browse Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+<style>
+    .header {
+    position: relative;
+    overflow: hidden;
+}
+
+#waveCanvas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; 
+    z-index: 5; 
+    pointer-events: none;
+}
+    .templates-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.template-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    background: rgb(43, 39, 39);
+}
+
+.template-thumbnail {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.download-btn {
+    display: block;
+    padding: 10px;
+    background: #ff6a00;
+    color: #ff6a00;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100px
+}
+h1 {
+    color:  whitesmoke;
+}
+
+#search {
+    padding: 8px;
+    width: 60%;
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+#templates-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+.swiper-container {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.swiper-slide {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+.swiper-slide .image-container {
+    width: 100%;
+    max-height: 500px; 
+    overflow-y: auto; 
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    max-height: 500px;
+}
+
+.swiper-slide h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    text-align: center;
+}
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.modal-content h2 {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.demo-btn, .download-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 20px 10px;
+    background-color: #ff6a00;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.demo-btn:hover, .download-btn:hover {
+    background-color: #e65c00;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#searchInput {
+    padding: 8px;
+    width: 60%;
+    margin: 15px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 10;
+    position: relative;
+}
+.swiper-pagination-bullet {
+    background: #ff6a00; 
+    margin: 20px 5px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ff6a00;
+    margin: 40px 5px;
+}
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .template-card {
+        width: 250px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .header .title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .template-card {
+        width: 200px;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+    .header .title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .template-card {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 100%;
+    }
+
+    .header .title {
+        font-size: 1.8rem;
+    }
+
+    .templates-container {
+        flex-direction: column;
+    }
+
+    .swiper-slide {
+        padding: 10px;
+    }
+  }
+
+@media (max-width: 576px) {
+    .header .title {
+        font-size: 1.5rem;
+    }
+
+    .header .description {
+        font-size: 1rem;
+    }
+
+    .templates-container {
+        padding: 10px;
+    }
+
+    .swiper-slide {
+        padding: 5px;
+    }
+
+    #searchInput {
+        width: 80%;
+    }
+}
+</style>
+<body>
+
+  <header class="header">
+    <h1 class="title">Explore Website & App Templates</h1>
+    <p class="description">Choose from the latest UI templates and download instantly.</p>
+    <a href="index.html" class="cta">Back to Home</a>
+    <canvas id="waveCanvas"></canvas>
+  </header>
+
+  <section id="templates-container" class="templates-container">
+    <h1>Choose Your Website Template</h1>
+    <input type="text" id="searchInput" placeholder="Search for a template..." onkeyup="searchTemplates()">
+    <div class="swiper-container">
+      <div class="swiper-wrapper" id="template-cards-container">
+        <!-- Template cards will be inserted here dynamically -->
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <div id="templateModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="modalImage" src="" alt="Template Preview">
+      <h2 id="modalTitle"></h2>
+      <a id="modalDownloadBtn" href="#" download class="download-btn">Download</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 UI Template Hub. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
+  </footer>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="wave.js"></script>
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+      fetch("dashboard.json")
+        .then(response => response.json())
+        .then(templates => {
+          const container = document.getElementById('template-cards-container');
+          const modal = document.getElementById('templateModal');
+          const modalImage = document.getElementById('modalImage');
+          const modalTitle = document.getElementById('modalTitle');
+          const modalDemoBtn = document.getElementById('modalDemoBtn');
+          const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+          const closeModal = document.getElementsByClassName('close')[0];
+
+          function displayTemplates(filteredTemplates) {
+            container.innerHTML = ''; // Clear existing templates
+            filteredTemplates.forEach(template => {
+              const card = document.createElement('div');
+              card.className = 'swiper-slide';
+
+              const imageContainer = document.createElement('div');
+              imageContainer.className = 'image-container';
+
+              const img = document.createElement('img');
+              img.src = template.image;
+              img.alt = template.name;
+
+              const title = document.createElement('h3');
+              title.textContent = template.name;
+
+              img.addEventListener("click", function () {
+                modal.style.display = "block";
+                modalImage.src = template.image;
+                modalTitle.textContent = template.name;
+                modalDemoBtn.href = template.demo;
+                modalDownloadBtn.href = template.download;
+              });
+
+              imageContainer.appendChild(img);
+              card.appendChild(imageContainer);
+              card.appendChild(title);
+              container.appendChild(card);
+            });
+
+            // Reinitialize Swiper after updating the DOM
+            new Swiper('.swiper-container', {
+              loop: true,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+              },
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
+            });
+          }
+
+          // Initial display of all templates
+          displayTemplates(templates);
+
+          // Search function
+          window.searchTemplates = function() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filteredTemplates = templates.filter(template => template.name.toLowerCase().includes(query));
+            displayTemplates(filteredTemplates);
+          };
+
+          closeModal.onclick = function() {
+            modal.style.display = 'none';
+          }
+
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = 'none';
+            }
+          }
+        });
+    });
+    </script>
+  <script src="wave.js"></script>
+
+</body>
+</html>

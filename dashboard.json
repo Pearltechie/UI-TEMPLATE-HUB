@@ -1,0 +1,80 @@
+[
+    {
+      "name": "Modern Portfolio",
+      "image": "Images/company website.webp",
+      "description": "A sleek and modern portfolio template.",
+      "download": "Images/ it-company-website-template.zip"
+    },
+    {
+      "name": "Business Website",
+      "image": "images/template business.jpg",
+      "description": "A corporate-style business website template.",
+      "download": "Templates/templatemo_591_villa_agengy.zip"
+    },
+    {
+      "name": "E-commerce Store",
+      "image": "images/E commerce page.jpg",
+      "description": "An online store template with a modern layout.",
+      "download": "images/templatemo_535_softy_pinko.zip"
+    },
+    {
+      "name": "Personal Blog",
+      "image": "images/personal blog.jpg",
+      "description": "A simple and clean blog template for writers.",
+      "download": "templates/templatemo_590_topic_listing.zip"
+    },
+    {
+      "name": "Startup Landing Page",
+      "image": "images/startup page.jpg",
+      "description": "A conversion-optimized landing page for startups.",
+      "download": "templates/templatemo_585_barber_shop.zip"
+    },
+    {
+      "name": "Photography Portfolio",
+      "image": "images/photography.jpg",
+      "description": "A visually appealing template for photographers.",
+      "download": "templates/templatemo_512_moonlight.zip"
+    },
+    {
+      "name": "Restaurant Website",
+      "image": "images/restaurant page.jpg",
+      "description": "A stylish and user-friendly template for restaurants.",
+      "download": "templates/templatemo_539_simple_house.zip"
+    },
+    {
+      "name": "SaaS Landing Page",
+      "image": "images/Saas page.jpg",
+      "description": "A professional template for SaaS businesses.",
+      "download": "templates/templatemo_534_parallo.zip"
+    },
+    {
+      "name": "Creative Agency",
+      "image": "images/creative agency.jpg",
+      "description": "A modern website template for creative agencies.",
+      "download": "templates/templatemo_542_new_vision.zip"
+    },
+    {
+      "name": "Medical & Healthcare",
+      "image": "images/health.jpg",
+      "description": "A professional template for medical and healthcare businesses.",
+      "download": "templates/templatemo_391_botany.zip"
+    },
+    {
+      "name": "Fitness & Gym",
+      "image": "images/fitness.jpg",
+      "description": "A high-energy template for fitness coaches and gyms.",
+      "download": "templates/templatemo_487_fitness.zip"
+    },
+    {
+      "name": "Travel Agency",
+      "image": "images/travel.jpg",
+      "description": "A travel-friendly template for agencies and tour guides.",
+      "download": "templates/templatemo_475_holiday.zip"
+    },
+    {
+      "name": "Event Management",
+      "image": "images/event.jpg",
+      "description": "A well-designed template for event planning companies.",
+      "download": "templates/templatemo_486_new_event.zip"
+    },
+]

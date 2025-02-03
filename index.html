@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Template Hub - Download Stunning Website Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="bodyParticleCanvas"></canvas>
+  <!-- Header -->
+  <header class="header" data-aos="fade-down">
+    <div class="header-left">
+      <h1 class="title">UI Template Hub</h1>
+      <p class="description">Access and Download Stunning Website Templates Instantly.</p>
+      <a href="dashboard.html" class="cta">Get Started</a>
+    </div>
+    <div class="header-right">
+      <div class="rotating-cube"></div>
+      <div class="rotating-cube second-cube"></div>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section class="features" data-aos="fade-up">
+    <h2 class="section-title">Why Choose UI Template Hub?</h2>
+    <div class="features-grid">
+      <div class="feature-card" data-aos="fade-right">
+        <h3>Ready-to-Use Templates</h3>
+        <p>Download high-quality website templates for various projects.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-left">
+        <h3>Fully Customizable</h3>
+        <p>Modify templates easily to match your design needs.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-right">
+        <h3>Free & Premium Options</h3>
+        <p>Access both free and premium website design templates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase Section -->
+  <section class="showcase" data-aos="fade-up">
+    <h2 class="section-title">Explore Our Templates</h2>
+    <div class="showcase-content">
+      <div class="showcase-card" data-aos="fade-right">
+        <h3>Responsive Designs</h3>
+        <p>All templates are optimized for mobile and desktop screens.</p>
+      </div>
+      <div class="showcase-card" data-aos="fade-left">
+        <h3>Modern UI Elements</h3>
+        <p>Stay up-to-date with the latest design trends.</p>
+      </div>
+      <div class="showcase-card" data-aos="fade-right">
+        <h3>Easy Download & Integration</h3>
+        <p>Download and integrate templates into your projects effortlessly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Section -->
+  <section class="auth-section" data-aos="fade-up">
+    <h2 id="getStartedBtn" class="section-title">Get Started</h2>
+    <div class="auth-buttons">
+    </div>
+  </section>
+
+  <section class="auth-section">
+    <div class="auth-form" id="signup-form">
+        <input type="text" id="signup-username" placeholder="Username">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button class="auth-btn" onclick="signUp()">Sign Up</button>  
+    </div>
+    
+    <div class="auth-form" id="login-form">
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+         <button class="auth-btn" onclick="logIn()">Login</button>
+    </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer" data-aos="fade-up">
+    <p>&copy; 2025 UI Template Hub. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
+    <canvas id="footerParticleCanvas"></canvas>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+  <script>
+ document.addEventListener("DOMContentLoaded", function () {
+      // Initialize AOS
+      AOS.init();
+
+      // GSAP animations
+      gsap.from(".title", { duration: 1, y: -50, opacity: 0, ease: "power2.out" });
+      gsap.from(".description", { duration: 1, y: -50, opacity: 0, delay: 0.5, ease: "power2.out" });
+      gsap.from(".cta", { duration: 1, y: -50, opacity: 0, delay: 1, ease: "power2.out" });
+
+      // Rotating cube animation
+      gsap.to(".rotating-cube", { rotationY: 360, duration: 5, repeat: -1, ease: "linear" });
+    });
+// Parallax scrolling effect
+window.addEventListener('scroll', function() {
+        const scrolled = window.scrollY;
+        document.querySelector('.header').style.backgroundPositionY = `${scrolled * 0.5}px`;
+      });
+
+      // Floating elements animation
+      gsap.to(".feature-card", { y: 20, repeat: -1, yoyo: true, ease: "power1.inOut", duration: 2 });
+      gsap.to(".showcase-card", { y: 20, repeat: -1, yoyo: true, ease: "power1.inOut", duration: 2, delay: 0.5 });
+
+     
+
+      // 3D card hover effect
+      document.querySelectorAll('.feature-card, .showcase-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          gsap.to(card, {
+            rotationY: (x / rect.width - 0.5) * 30,
+            rotationX: -(y / rect.height - 0.5) * 30,
+            ease: 'power2.out',
+            duration: 0.5
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotationY: 0,
+            rotationX: 0,
+            ease: 'power2.out',
+            duration: 0.5
+          });
+        });
+      });
+        // Background color change on hover for showcase and feature-card
+  document.querySelectorAll('.feature-card, .showcase-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { backgroundColor: '#1f1f1', duration: 0.5 });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { backgroundColor: card.classList.contains('feature-card') ? '#1f1f1f' : '#2b2b2b', duration: 0.5 });
+    });
+  });
+
+  // Function to initialize particles for a given canvas
+function createParticles(canvasId, particleCount, areaHeight = "full") {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+        if (areaHeight === "full") {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        } else {
+            const footer = document.querySelector("footer");
+            canvas.width = footer.clientWidth;
+            canvas.height = footer.clientHeight;
+        }
+    }
+
+    resizeCanvas();
+
+    let particles = [];
+
+    class Particle {
+        constructor(x, y, speedX, speedY, size) {
+            this.x = x;
+            this.y = y;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.size = size;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x <= 0 || this.x >= canvas.width) this.speedX *= -1;
+            if (this.y <= 0 || this.y >= canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            let size = Math.random() * 3 + 1;
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            let speedX = (Math.random() - 0.5) * 1.5;
+            let speedY = (Math.random() - 0.5) * 1.5;
+            particles.push(new Particle(x, y, speedX, speedY, size));
+        }
+    }
+
+    function drawLines() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 80) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 80})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+            }
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach((particle) => {
+            particle.update();
+            particle.draw();
+        });
+
+        drawLines();
+
+        requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener("resize", () => {
+        resizeCanvas();
+        initParticles();
+    });
+{
+    initParticles();
+    animateParticles();
+}
+    }
+     // Particle effects
+     createParticles("bodyParticleCanvas", 300, "full");
+     createParticles("footerParticleCanvas", 80, "footer");
+    
+    </script>
+</body>
+</html>

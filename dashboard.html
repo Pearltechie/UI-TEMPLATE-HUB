@@ -326,10 +326,14 @@ h1 {
             title.textContent = template.name;
 
             img.addEventListener("click", function () {
-              modal.style.display = "block";
-              modalImage.src = template.image;
-              modalTitle.textContent = template.name;
-              modalDemoBtn.href = template.demo;
+    modal.style.display = "block";
+    modalImage.src = template.image;
+    modalTitle.textContent = template.name;
+    modalDemoBtn.href = template.demo;
+    modalDownloadBtn.setAttribute("href", template.download);
+    modalDownloadBtn.setAttribute("download", template.name + ".zip");
+});
+
 
               // Handle ZIP file download correctly
               modalDownloadBtn.onclick = function (event) {

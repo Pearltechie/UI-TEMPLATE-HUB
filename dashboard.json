@@ -1,11 +1,5 @@
 [
     {
-      "name": "Modern Portfolio",
-      "image": "Images/company website.webp",
-      "description": "A sleek and modern portfolio template.",
-      "download": "Images/ company website.webp"
-    },
-    {
       "name": "Business Website",
       "image": "images/template business.jpg",
       "description": "A corporate-style business website template.",
@@ -76,5 +70,11 @@
       "image": "images/event.jpg",
       "description": "A well-designed template for event planning companies.",
       "download": "templates/templatemo_486_new_event.zip"
+    },
+     {
+      "name": "Modern Portfolio",
+      "image": "images/company website.webp",
+      "description": "A sleek and modern portfolio template.",
+      "download": "Images/ company website.webp"
     }
 ]

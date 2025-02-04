@@ -297,84 +297,88 @@ h1 {
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="wave.js"></script>
   <script>
-   document.addEventListener("DOMContentLoaded", function () {
-      fetch("dashboard.json")
-        .then(response => response.json())
-        .then(templates => {
-          const container = document.getElementById('template-cards-container');
-          const modal = document.getElementById('templateModal');
-          const modalImage = document.getElementById('modalImage');
-          const modalTitle = document.getElementById('modalTitle');
-          const modalDemoBtn = document.getElementById('modalDemoBtn');
-          const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-          const closeModal = document.getElementsByClassName('close')[0];
+  document.addEventListener("DOMContentLoaded", function () {
+  fetch("dashboard.json")
+    .then(response => response.json())
+    .then(templates => {
+      const container = document.getElementById('template-cards-container');
+      const modal = document.getElementById('templateModal');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDemoBtn = document.getElementById('modalDemoBtn');
+      const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+      const closeModal = document.getElementsByClassName('close')[0];
 
-          function displayTemplates(filteredTemplates) {
-            container.innerHTML = ''; // Clear existing templates
-            filteredTemplates.forEach(template => {
-              const card = document.createElement('div');
-              card.className = 'swiper-slide';
+      function displayTemplates(filteredTemplates) {
+        container.innerHTML = ''; // Clear existing templates
+        filteredTemplates.forEach(template => {
+          const card = document.createElement('div');
+          card.className = 'swiper-slide';
 
-              const imageContainer = document.createElement('div');
-              imageContainer.className = 'image-container';
+          const imageContainer = document.createElement('div');
+          imageContainer.className = 'image-container';
 
-              const img = document.createElement('img');
-              img.src = template.image;
-              img.alt = template.name;
+          const img = document.createElement('img');
+          img.src = template.image;
+          img.alt = template.name;
 
-              const title = document.createElement('h3');
-              title.textContent = template.name;
+          const title = document.createElement('h3');
+          title.textContent = template.name;
 
-              img.addEventListener("click", function () {
-                modal.style.display = "block";
-                modalImage.src = template.image;
-                modalTitle.textContent = template.name;
-                modalDemoBtn.href = template.demo;
-                modalDownloadBtn.href = template.download;
-              });
+          img.addEventListener("click", function () {
+            modal.style.display = "block";
+            modalImage.src = template.image;
+            modalTitle.textContent = template.name;
+            modalDemoBtn.href = template.demo;
 
-              imageContainer.appendChild(img);
-              card.appendChild(imageContainer);
-              card.appendChild(title);
-              container.appendChild(card);
-            });
+            // ✅ Ensure the correct ZIP file is downloaded
+            modalDownloadBtn.href = template.download;
+            modalDownloadBtn.setAttribute("download", template.name + ".zip");
+          });
 
-            // Reinitialize Swiper after updating the DOM
-            new Swiper('.swiper-container', {
-              loop: true,
-              pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-              },
-              navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              },
-            });
-          }
-
-          // Initial display of all templates
-          displayTemplates(templates);
-
-          // Search function
-          window.searchTemplates = function() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filteredTemplates = templates.filter(template => template.name.toLowerCase().includes(query));
-            displayTemplates(filteredTemplates);
-          };
-
-          closeModal.onclick = function() {
-            modal.style.display = 'none';
-          }
-
-          window.onclick = function(event) {
-            if (event.target == modal) {
-              modal.style.display = 'none';
-            }
-          }
+          imageContainer.appendChild(img);
+          card.appendChild(imageContainer);
+          card.appendChild(title);
+          container.appendChild(card);
         });
+
+        // Reinitialize Swiper after updating the DOM
+        new Swiper('.swiper-container', {
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      }
+
+      // Initial display of all templates
+      displayTemplates(templates);
+
+      // Search function
+      window.searchTemplates = function() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const filteredTemplates = templates.filter(template => template.name.toLowerCase().includes(query));
+        displayTemplates(filteredTemplates);
+      };
+
+      closeModal.onclick = function() {
+        modal.style.display = 'none';
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }
     });
-    </script>
+});
+</script>
+  
   <script src="wave.js"></script>
 
 </body>

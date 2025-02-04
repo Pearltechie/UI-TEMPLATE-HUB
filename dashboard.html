@@ -297,7 +297,7 @@ h1 {
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="wave.js"></script>
   <script>
- document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
       fetch("dashboard.json")
         .then(response => response.json())
         .then(templates => {
@@ -333,6 +333,7 @@ h1 {
       modalDownloadBtn.setAttribute("href", template.download);
       modalDownloadBtn.setAttribute("download", template.name + ".zip");
   });
+
   
                 // Handle ZIP file download correctly
                 modalDownloadBtn.onclick = function (event) {
@@ -369,24 +370,6 @@ h1 {
                   card.appendChild(title);
                   container.appendChild(card);
                 });
-      
-                // Reinitialize Swiper after updating the DOM
-                new Swiper('.swiper-container', {
-                  loop: true,
-                  pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                  },
-                  navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                  },
-                });
-              }
-  
-              // Initial display of all templates
-              displayTemplates(templates);
-            });
   
             // Reinitialize Swiper after updating the DOM
             new Swiper('.swiper-container', {
@@ -400,7 +383,7 @@ h1 {
                 prevEl: '.swiper-button-prev',
               },
             });
-          });
+          };
           window.searchTemplates = function() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const filteredTemplates = templates.filter(template => template.name.toLowerCase().includes(query));
@@ -416,6 +399,9 @@ h1 {
               modal.style.display = 'none';
             }
           };
+        });
+      }
+    );
   </script>
 
   <script src="wave.js"></script>

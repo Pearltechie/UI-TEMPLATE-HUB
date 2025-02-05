@@ -296,8 +296,9 @@ h1 {
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="wave.js"></script>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
+ 
+        <script>
+   document.addEventListener("DOMContentLoaded", function () {
       fetch("dashboard.json")
         .then(response => response.json())
         .then(templates => {
@@ -308,69 +309,37 @@ document.addEventListener("DOMContentLoaded", function () {
           const modalDemoBtn = document.getElementById('modalDemoBtn');
           const modalDownloadBtn = document.getElementById('modalDownloadBtn');
           const closeModal = document.getElementsByClassName('close')[0];
-  
+
           function displayTemplates(filteredTemplates) {
             container.innerHTML = ''; // Clear existing templates
             filteredTemplates.forEach(template => {
               const card = document.createElement('div');
               card.className = 'swiper-slide';
-  
+
               const imageContainer = document.createElement('div');
               imageContainer.className = 'image-container';
-  
+
               const img = document.createElement('img');
               img.src = template.image;
               img.alt = template.name;
-  
+
               const title = document.createElement('h3');
               title.textContent = template.name;
-  
-              img.addEventListener("click", function () {
-      modal.style.display = "block";
-      modalImage.src = template.image;
-      modalTitle.textContent = template.name;
-      modalDemoBtn.href = template.demo;
-      modalDownloadBtn.setAttribute("href", template.download);
-      modalDownloadBtn.setAttribute("download", template.name + ".zip");
-  });
 
-  
-                // Handle ZIP file download correctly
-                modalDownloadBtn.onclick = function (event) {
-                  event.preventDefault(); // Prevent default link behavior
-                  
-                  if (template.download && template.download.endsWith(".zip")) {
-                    fetch(template.download)
-                      .then(response => {
-                        if (!response.ok) {
-                          throw new Error("File not found");
-                        }
-                        return response.blob();
-                      })
-                      .then(blob => {
-                        const link = document.createElement("a");
-                        link.href = URL.createObjectURL(blob);
-                        link.download = template.name + ".zip"; // Save with proper name
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        URL.revokeObjectURL(link.href);
-                      })
-                      .catch(error => {
-                        console.error("Download failed:", error);
-                        alert("Download failed. Please check the file link.");
-                      });
-                  } else {
-                    alert("No valid ZIP file available for download.");
-                  }
-                };
-                  imageContainer.appendChild(img);
-                  imageContainer.appendChild(img);
-                  card.appendChild(imageContainer);
-                  card.appendChild(title);
-                  container.appendChild(card);
-                });
-  
+              img.addEventListener("click", function () {
+                modal.style.display = "block";
+                modalImage.src = template.image;
+                modalTitle.textContent = template.name;
+                modalDemoBtn.href = template.demo;
+                modalDownloadBtn.href = template.download;
+              });
+
+              imageContainer.appendChild(img);
+              card.appendChild(imageContainer);
+              card.appendChild(title);
+              container.appendChild(card);
+            });
+
             // Reinitialize Swiper after updating the DOM
             new Swiper('.swiper-container', {
               loop: true,
@@ -383,27 +352,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 prevEl: '.swiper-button-prev',
               },
             });
-          };
+          }
+
+          // Initial display of all templates
+          displayTemplates(templates);
+
+          // Search function
           window.searchTemplates = function() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const filteredTemplates = templates.filter(template => template.name.toLowerCase().includes(query));
             displayTemplates(filteredTemplates);
           };
-  
+
           closeModal.onclick = function() {
             modal.style.display = 'none';
-          };
-  
+          }
+
           window.onclick = function(event) {
             if (event.target == modal) {
               modal.style.display = 'none';
             }
-          };
+          }
         });
-      }
-    );
-  </script>
-
+    });
+    </script>
   <script src="wave.js"></script>
 
 </body>
